@@ -1,0 +1,17 @@
+{
+  "name": "simple-memory",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "start:dev": "ws"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jcuperus/simple-memory.git"
+  },
+  "author": "Jaep Cuperus",
+  "license": "MIT",
+  "devDependencies": {
+    "local-web-server": "^4.0.0"
+  }
+}

@@ -1,6 +1,4 @@
-import { memory } from "./modules/memory.js";
-import { timer } from "./modules/timer.js";
+import { Memory } from "./modules/memory.js";
+// import { timer } from "./modules/timer.js";
 
-memory.initialize('#memory');
-timer.initialize("#timer");
-// timer.startTimer();
+const memory = new Memory(document.querySelector("#memory"), 2);
