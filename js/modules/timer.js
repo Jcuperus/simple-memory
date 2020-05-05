@@ -1,23 +1,25 @@
-export const timer = (() => {
-    'use strict';
+export class Timer
+{
+    TIMEOUT_EVENT = 'timeout';
 
-    let timerLabel;
-    let time;
+    timerElement;
+    time = 0;
+    timer;
 
-    return {
-        initialize: (selector) => {
-            timerLabel = document.querySelector(selector);
-            time = 0;
-        },
-        startTimer: () => {
-            setInterval(() => {
-                //update clock
-                time++;
-                timerLabel.innerText = time;
-                console.log("tick", time);
-            }, 1000);
-
-            timerLabel.innerText = time;
-        }
+    constructor(timerElement) {
+        this.timerElement = timerElement;
     }
-})();
+
+    startTimer() {
+        this.timerElement.innerText = this.time;
+
+        this.timer = setInterval(() => {
+            this.time++;
+            this.timerElement.innerText = this.time;
+        }, 1000);
+    }
+
+    stopTimer() {
+        clearInterval(this.timer);
+    }
+}

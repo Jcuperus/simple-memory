@@ -1,12 +1,17 @@
 import { generateAlphabetArray, shuffleArray } from "./utils.js";
 
-export class Memory {
+export class Memory
+{
+    EVENT_START = 'start';
+    EVENT_WIN = 'win';
     CARD_HIDE_DELAY = 3000;
 
     tableElement;
     gridSize;
     cardGrid = [];
     selectedCard;
+    shownCards = [];
+    gameStarted = false;
     
     constructor(tableElement, gridSize) {
         this.tableElement = tableElement;
@@ -29,7 +34,7 @@ export class Memory {
 
             for (let x = 0; x < this.gridSize; x++) {
                 let card = new Card(document.createElement('td'), letters.pop());
-                card.addClickHandler(this.onCardClicked.bind(this));
+                card.registerClickHandler(this.onCardClicked.bind(this));
                 this.cardGrid[y][x] = card;
                 row.appendChild(card.getElement());
             }
@@ -39,10 +44,16 @@ export class Memory {
     }
 
     onCardClicked(card) {
+        if (!this.gameStarted) {
+            this.gameStarted = true;
+            this.tableElement.dispatchEvent(new Event(this.EVENT_START));
+        }
+
         if (!card.isFound()) {
             if (this.selectedCard) {
                 if (this.selectedCard != card) {
                     card.show();
+                    this.shownCards.push(card);
     
                     if (this.selectedCard.isEqual(card)) {
                         // Cards match
@@ -56,14 +67,28 @@ export class Memory {
                     this.selectedCard = null;
                 }
             } else {
+                // Hide all currently shown cards without delay
+                while (this.shownCards.length > 0) {
+                    this.shownCards.pop().hide();
+                }
+
                 card.show();
+                this.shownCards.push(card);
                 this.selectedCard = card;
             }
 
             if (this.hasWon()) {
-                console.log("Congratulations. You played yourself.");
+                // Game won
+                this.tableElement.dispatchEvent(new Event(this.EVENT_WIN));
+                this.gameStarted = false;
             }
         }
+    }
+
+    registerEventHandler(event, eventHandler) {
+        this.tableElement.addEventListener(event, () => {
+            eventHandler(this);
+        });
     }
 
     hasWon() {
@@ -79,7 +104,8 @@ export class Memory {
     }
 }
 
-export class Card {
+export class Card
+{
     CARD_ACTIVE_CLASS = 'active';
     CARD_FOUND_CLASS = 'found';
 
@@ -112,7 +138,7 @@ export class Card {
         this.found = true;
     }
 
-    addClickHandler(eventHandler) {
+    registerClickHandler(eventHandler) {
         this.cardElement.addEventListener('click', () => {
             eventHandler(this);
         });
