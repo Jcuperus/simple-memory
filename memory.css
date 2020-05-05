@@ -1,6 +1,7 @@
 body {
     background-color: #000000;
     color: #ffffff;
+    border-color: #ffffff;
     font-family: 'Lora', serif;
 }
 
@@ -16,9 +17,92 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+input,
+select,
+button {
+    font-family: 'Lora', serif;
+    background-color: transparent;
+    padding: 10px 5px;
+    border: 1px solid;
+    color: #ffffff;
+}
+
+option {
+    background-color: #000000;
+    padding: 10px 5px;
+}
+
+input[type="color"] {
+    padding: 5px;
+    height: 40px;
+}
+
+input[type="submit"],
+button {
+    cursor: pointer;
+}
+
+input:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+.form-group,
+#settings-form input[type="submit"],
+#settings-form button {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select,
+#settings-form input[type="submit"],
+#settings-form button {
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .column {
-    border: 3px double #ffffff;
+    border: 3px double;
     padding: 15px;
+}
+
+#settings-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    transform: translateX(calc(100% - 70px));
+    transition: all 0.2s ease-out;
+}
+
+#settings-bar.open {
+    transform: unset;
+}
+
+#settings-bar .settings-wrapper {
+    display: flex;
+    align-items: stretch;
+    padding: 15px;
+}
+
+#settings-bar .settings-wrapper > * {
+    margin-right: 15px;
+}
+
+#settings-bar .settings-wrapper .icon-bar {
+    width: 40px;
+}
+
+#settings-bar .settings-wrapper .icon-bar i {
+    cursor: pointer;
 }
 
 #memory {
@@ -28,7 +112,7 @@ h1, h2, h3, h4, h5 {
 
 #memory td {
     transition: all 0.2s ease-in;
-    border: 1px solid #ffffff;
+    border: 1px solid;
     border-radius: 5px;
     width: 55px;
     height: 100px;

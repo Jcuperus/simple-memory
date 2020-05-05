@@ -8,17 +8,25 @@ export class Memory
 
     tableElement;
     gridSize;
+    defaultLetter;
     cardGrid = [];
     selectedCard;
     shownCards = [];
     gameStarted = false;
     
-    constructor(tableElement, gridSize) {
+    constructor(tableElement, gridSize, defaultLetter) {
         this.tableElement = tableElement;
+        this.initialize(gridSize, defaultLetter);
+    }
+
+    initialize(gridSize, defaultLetter) {
+        this.tableElement.innerHTML = '';
         this.gridSize = gridSize;
+        this.defaultLetter = defaultLetter;
 
         const letters = this.generateLetterList();
         this.createCardGrid(letters);
+        this.gameStarted = false;
     }
 
     generateLetterList() {
@@ -33,7 +41,7 @@ export class Memory
             let row = document.createElement('tr');
 
             for (let x = 0; x < this.gridSize; x++) {
-                let card = new Card(document.createElement('td'), letters.pop());
+                let card = new Card(document.createElement('td'), letters.pop(), this.defaultLetter);
                 card.registerClickHandler(this.onCardClicked.bind(this));
                 this.cardGrid[y][x] = card;
                 row.appendChild(card.getElement());
@@ -110,13 +118,14 @@ export class Card
     CARD_FOUND_CLASS = 'found';
 
     found = false;
-    defaultLetter = '?';
+    defaultLetter;
     cardElement;
     letter;
 
-    constructor(cardElement, letter) {
+    constructor(cardElement, letter, defaultLetter) {
         this.cardElement = cardElement;
         this.letter = letter;
+        this.defaultLetter = defaultLetter;
         this.hide();
     }
 
