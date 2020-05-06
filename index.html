@@ -9,14 +9,7 @@
         <script src="https://kit.fontawesome.com/367ce93405.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <main id="main">
-            <div class="column">
-                <h1 class="title">Simple Memory</h1>
-                <table id="memory"></table>
-                <h3 id="timer">Click card to start</h3>
-            </div>
-        </main>
-        <div id="settings-bar">
+        <div id="settings-bar" class="dynamic-color">
             <div class="settings-wrapper">
                 <div class="icon-bar">
                     <i id="settings-toggle" class="fas fa-cogs fa-2x"></i>
@@ -50,6 +43,19 @@
                 </div>
             </div>
         </div>
+        <main id="main">
+            <div class="column">
+                <h1 class="title">Simple Memory</h1>
+                <table id="memory"></table>
+                <h3 id="timer">Click card to start</h3>
+            </div>
+        </main>
+        <footer>
+            <div class="scores-container">
+                <h2>High scores</h2>
+                <table id="scores"></table>
+            </div>
+        </footer>
         <script type="module" src="js/main.js"></script>
     </body>
 </html>

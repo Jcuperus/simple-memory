@@ -29,6 +29,10 @@ export class Memory
         this.gameStarted = false;
     }
 
+    restart() {
+        this.initialize(this.gridSize, this.defaultLetter);
+    }
+
     generateLetterList() {
         let letters = generateAlphabetArray(this.gridSize * this.gridSize / 2);
         letters = letters.concat(letters);

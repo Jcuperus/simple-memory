@@ -10,6 +10,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+    min-width: 600px;
     padding: 0 15px;
 }
 
@@ -81,10 +82,12 @@ button:focus {
     width: 300px;
     transform: translateX(calc(100% - 70px));
     transition: all 0.2s ease-out;
+    background-color: #000000;
 }
 
 #settings-bar.open {
     transform: unset;
+    border-left: 3px double #ffffff;
 }
 
 #settings-bar .settings-wrapper {
@@ -93,12 +96,9 @@ button:focus {
     padding: 15px;
 }
 
-#settings-bar .settings-wrapper > * {
-    margin-right: 15px;
-}
-
 #settings-bar .settings-wrapper .icon-bar {
     width: 40px;
+    margin-right: 15px;
 }
 
 #settings-bar .settings-wrapper .icon-bar i {
@@ -114,8 +114,8 @@ button:focus {
     transition: all 0.2s ease-in;
     border: 1px solid;
     border-radius: 5px;
-    width: 55px;
-    height: 100px;
+    width: 100px;
+    height: 175px;
     text-align: center;
     font-size: 25px;
     cursor: pointer;
@@ -129,4 +129,18 @@ button:focus {
 #memory td.found {
     border-color: transparent;
     color: transparent;
+}
+
+.scores-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+#scores {
+    border: none;
+}
+
+#scores tr td {
+    padding: 5px 10px;
 }

@@ -58,6 +58,7 @@ export function setPageColors(primaryColor, secondaryColor) {
     for (let element of document.querySelectorAll(".dynamic-color")) {
         element.style.color = primaryColor;
         element.style.borderColor = primaryColor;
+        element.style.backgroundColor = secondaryColor;
     }
 
     let style = document.querySelector("#custom-color-sheet");

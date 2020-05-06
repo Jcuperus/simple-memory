@@ -1,6 +1,6 @@
 export class Timer
 {
-    TIMEOUT_EVENT = 'timeout';
+    START_TEXT = "Click card to start";
 
     timerElement;
     time = 0;
@@ -8,6 +8,7 @@ export class Timer
 
     constructor(timerElement) {
         this.timerElement = timerElement;
+        this.timerElement.innerText = this.START_TEXT;
     }
 
     startTimer() {
@@ -21,5 +22,14 @@ export class Timer
 
     stopTimer() {
         clearInterval(this.timer);
+    }
+
+    resetTime() {
+        this.time = 0;
+        this.timerElement.innerText = this.START_TEXT;
+    }
+
+    getTime() {
+        return this.time;
     }
 }
